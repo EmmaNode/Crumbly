@@ -7,10 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     lastname: DataTypes.STRING,
     username: {
       type: DataTypes.STRING,
-      validate: {
-        notNULL: {
-          msg: 'Username may not be blank'
-      }
+        allowNull: false
     },
     email: {
       type: DataTypes.STRING,
@@ -32,9 +29,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeCreate: function(pendingUser, options){
-        if(pendingUser && pendingUser.password) //is this user not null and is the passwork not null string
+        if(pendingUser && pendingUser.password){ //is this user not null and is the passwork not null string
           var hash = bcrypt.hashSync(pendingUser.password, 10); //10 salt rounds is the default
           pendingUser.password = hash; //reassigning password value of the object we are about to create || Changing the value of the password, the original string is overroad and done
+        }
       }
     },
     classMethods: {

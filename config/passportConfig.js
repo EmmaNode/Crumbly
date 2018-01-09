@@ -1,7 +1,7 @@
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var db = require('../models'); //dealing with database in this file reference needed
-
+require('dotenv').config();
 //define a way for the passport to serialize and deserialize users
 passport.serializeUser(function(user, callback){
   callback(null, user.id);
@@ -11,8 +11,8 @@ passport.serializeUser(function(user, callback){
 passport.deserializeUser(function(id, callback) {
   db.user.findById(id).then(function(user){
     callback(null, user);
-  }).catch(function(err){ //this provides info about the error that occured
-    callback(err, null);
+  // }).catch(function(err){ //this provides info about the error that occured
+  //   callback(err, null);
   });
 });
 

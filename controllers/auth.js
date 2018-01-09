@@ -56,11 +56,13 @@ router.post('/signup', function(req, res, next){
     }
   }).catch(function(err){
     req.flash('error', err.message);
+    console.log('user not created', err.message);
     res.redirect('/auth/signup');
   });
 });
 
 router.get('/logout', function(req, res){
+  console.log('can I logout??');
   req.logout();
   req.flash('success', 'Successfully logged out');
   res.redirect('/');

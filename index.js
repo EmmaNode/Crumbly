@@ -41,3 +41,13 @@ app.get('/profile', isLoggedIn, function(req, res){
 app.use('/auth', require('./controllers/auth'));
 
 app.listen(process.env.PORT || 3000);
+
+
+// app.use(session()); // session middleware 
+// app.use(require('flash')());
+//
+// app.use(function (req, res) {
+//   // flash a message
+//   req.flash('info', 'hello!');
+//   next();
+// })
