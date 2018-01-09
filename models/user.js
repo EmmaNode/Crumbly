@@ -1,5 +1,4 @@
 'use strict';
-// set restrictions and create validations
 module.exports = (sequelize, DataTypes) => {
   var user = sequelize.define('user', {
     firstname: DataTypes.STRING,
@@ -8,11 +7,26 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notNULL: {
-          msg: 'Username cannot be blank'
+          msg: 'Username may not be blank'
       }
     },
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: {
+          msg: 'Invalid email address format'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [6, 32], //password length requirements
+          msg: 'Password must be between 6 and 32 characters long'
+        }
+      }
+    }
   }, {
     classMethods: {
       associate: function(models) {
