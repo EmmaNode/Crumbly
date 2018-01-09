@@ -19,3 +19,10 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(flash());
+
+app.get('/', function(req,res){
+  res.render('home');
+  // res.send('home page');
+});
+
+app.listen(process.env.PORT || 3000);
