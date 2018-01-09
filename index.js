@@ -25,4 +25,10 @@ app.get('/', function(req,res){
   // res.send('home page');
 });
 
+app.get('/profile', function(req, res){
+  res.render('profile');
+});
+
+app.use('/auth', require('./controllers/auth'));
+
 app.listen(process.env.PORT || 3000);
