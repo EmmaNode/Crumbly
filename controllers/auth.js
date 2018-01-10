@@ -69,4 +69,9 @@ router.get('/logout', function(req, res){
   // res.send('logout post route - coming soon');
 });
 
+//creates a route that grabs the info api for each restaurant url
+router.get('/findRestaurants', function(req, res){
+  res.render('auth/findRestaurants');
+});
+
 module.exports = router;

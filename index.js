@@ -38,12 +38,32 @@ app.get('/profile', isLoggedIn, function(req, res){
   res.render('profile');
 });
 
+
+app.get('/findRestaurants', function(req, res) {
+    // var yelpUrl = 'https://api.yelp.com/v3/businesses/search';
+    //
+    // request(yelpUrl, function(error, response, body) {
+    //         var restaurant = JSON.parse(body).results;
+    //         // console.log(pokemon);
+            res.send('findRestaurants');
+        });
+    // });
+
+    //app.get restaurants info api and append to individual restaurants
+
+    // app.use('/findRestaurants', require('./controllers/auth'));
+
+
+
 app.use('/auth', require('./controllers/auth'));
+//localhost300/favorites
+app.use('/favorites', require('./controllers/favorites'));
+app.use('/next', require('./controllers/next'));
 
 app.listen(process.env.PORT || 3000);
 
 
-// app.use(session()); // session middleware 
+// app.use(session()); // session middleware
 // app.use(require('flash')());
 //
 // app.use(function (req, res) {
