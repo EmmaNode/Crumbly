@@ -8,10 +8,11 @@
 </div>
     <div class="all-favorites">
     	<div class="favebg">
-        <% user.contents.forEach(function(restuarant){ %>
+        <% user.contents.forEach(function(restaurant){ %>
       <div class="list">
         <div class="items">
-          <h2><%= restuarant.restaurantname %></a></h2>
+          <h2><%= restaurant.restaurantname %></a></h2>
+					<img src="<%=restaurant.restaurantimage%>" alt="farge">
 		</form>
         </div>
       </div>
