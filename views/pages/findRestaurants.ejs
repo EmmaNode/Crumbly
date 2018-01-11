@@ -5,10 +5,12 @@
       <div class="form-group col-md-6 col-sm-offset-3">
         <input type="text" class="form-control input-lg text-center" name="searchbox" placeholder="Search for a restaurant">
       </div>
+      <div class="form-group col-md-6 col-sm-offset-3">
+        <input type="text" class="form-control input-lg text-center" name="location" placeholder="City of interest">
+      </div>
     </div>
     <div class="row">
       <div class="form-group col-md-6 col-sm-offset-3">
-
         <input type="submit" value="Search Yelp" class="btn btn-primary btn-lg btn-block">
       </div>
     </div>
@@ -16,10 +18,13 @@
   </form>
 </div>
 <div class="results">
+
+  <% if (businesses) { %>
   <% for (var item of businesses) { %>
     <div><%= item.name %></div>
     <img src="<%= item.image_url%>">
   <% }; %>
+  <% } %>
 </div>
 
 <!-- reference reddit slideshow -->

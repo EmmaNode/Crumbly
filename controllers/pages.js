@@ -33,7 +33,7 @@ router.get('/', function(req, res){
 
 router.get('/findRestaurants', function(req, res){
   console.log('find rest route reached');
-  res.render('pages/findRestaurants', { businesses: {} });
+  res.render('pages/findRestaurants', { businesses: null });
 });
 
 router.post('/searchresults', function(req, res){
