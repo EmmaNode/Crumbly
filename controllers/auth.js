@@ -8,6 +8,7 @@
 var express = require('express');
 var passport = require('../config/passportConfig');
 var db = require('../models');
+// var isLoggedIn = require('/middleware/isLoggedIn');
 var router = express.Router();
 
 router.get('/login', function(req, res){
