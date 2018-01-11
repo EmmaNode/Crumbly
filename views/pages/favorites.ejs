@@ -1,1 +1,26 @@
-<h2>here is a list of favortes</h2>
+<div class="container">
+	<div class="homebanner">
+  <h1 class="text-center">here is a list of favortes</h1>
+  <p class="text-center">
+   <!-- <a href="/">Return to all pokemon</a> -->
+  </p>
+
+</div>
+    <div class="all-favorites">
+    	<div class="favebg">
+        <% user.contents.forEach(function(restuarant){ %>
+      <div class="list">
+        <div class="items">
+          <h2><%= restuarant.restaurantname %></a></h2>
+		</form>
+        </div>
+      </div>
+      <% }); %>
+      </div>
+    </div>
+
+
+</div>
+
+
+//user.contents.forEach reference in visual pages

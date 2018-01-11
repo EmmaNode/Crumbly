@@ -70,8 +70,8 @@ router.post('/favorites', isLoggedIn, function(req, res){
   db.content.findOrCreate({
     where: {
       restaurantname: req.body.name,
-      // restaurantId: req.body.id,
-      // restaurantimage: req.body.image_url
+      restaurantId: req.body.id,
+      restaurantimage: req.body.image_url
     },
     defaults: {
       userId: req.user.id

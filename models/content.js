@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   var content = sequelize.define('content', {
     restaurantname: DataTypes.STRING,
     restaurantId: DataTypes.STRING,
+    restaurantimage: DataTypes.TEXT,
     status: DataTypes.STRING,
     userId: DataTypes.INTEGER
   });
