@@ -25,6 +25,8 @@
     <form method="POST" action="/pages/favorites">
       <input hidden type="text" name="userId" value="<%= currentUser.id %>">
       <input hidden type="text" name="name" value="<%= item.name %>">
+      <input hidden type="text" name="restaurantId" value="<%= item.id %>">
+      <input hidden type="text" name="restaurantimage" value="<%= item.image_url %>">
       <button class="btn btn-primary" type="submit">Add to Favorites</button>
     </form>
     <form method="POST" action="/pages/next">

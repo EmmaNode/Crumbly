@@ -14,6 +14,9 @@ module.exports = {
       restaurantId: {
         type: Sequelize.STRING
       },
+      restaurantimage: {
+      type: Sequelize.STRING
+      },
       status: {
         type: Sequelize.STRING
       },

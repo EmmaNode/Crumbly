@@ -45,18 +45,33 @@ router.post('/searchresults', function(req, res){
 
 //FAVORITES GET POST
 router.get('/favorites', isLoggedIn, function(req, res){
-  console.log('fav routes reached');
-  res.render('pages/favorites');
+  // console.log('fav routes reached');
+  // res.render('pages/favorites');
+  db.user.findOne({
+    where: { id: req.user.id },
+    include: [db.content]
+  })
+  .then(function(user) {
+    res.render('pages/favorites', { user: user });
+  })
+  .catch(function(err) {
+    console.log('my error is ' + err);
+  });
 });
 
+//user.contents.forEach reference in visual pages
+
+
 //This grabs the input information from client when they click a button, it finds a duplicate or creates a new one and attaches the user ID | spread is a promise because it takes a long time.
-router.post('/favorites', function(req, res){
+router.post('/favorites', isLoggedIn, function(req, res){
   // console.log('post to favs reached');
   //  res.send('pages/favorites');
   // res.render('pages/favorites');
   db.content.findOrCreate({
     where: {
-      restaurantname: req.body.name
+      restaurantname: req.body.name,
+      // restaurantId: req.body.id,
+      // restaurantimage: req.body.image_url
     },
     defaults: {
       userId: req.user.id
@@ -78,7 +93,7 @@ router.get('/next', isLoggedIn, function(req, res){
   res.render('pages/next');
 });
 
-router.post('/next', function(req, res){
+router.post('/next', isLoggedIn, function(req, res){
   console.log('up next reached');
   // res.send('pages/next');
   res.render('pages/next');
@@ -90,7 +105,7 @@ router.get('/neverAgain', isLoggedIn, function(req, res){
   res.render('pages/neverAgain');
 });
 
-router.post('/neverAgain', function(req, res){
+router.post('/neverAgain', isLoggedIn, function(req, res){
   console.log('neverAgain reached');
   // res.send('pages/neverAgain');
   res.render('pages/neverAgain');

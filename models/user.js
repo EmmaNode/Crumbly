@@ -35,12 +35,12 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+    user.associate = function(models) {
+      // associations can be defined here
+      models.user.hasMany(models.content);
+    };
+
 
 user.prototype.isValidPassword = function(passwordTyped){
   return bcrypt.compareSync(passwordTyped, this.password); //compares typed password to password stored in database that matches usernam
