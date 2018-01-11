@@ -1,9 +1,9 @@
 <div class="bubble text-center">Search Yelp for restaurants! Then add it to our database, and save it to your favorites!</div>
 <div class="yelpsearchdiv">
-  <form class="form" action="/yelp/search" method="get">
+  <form class="form" action="/pages/searchresults" method="post">
     <div class="row">
       <div class="form-group col-md-6 col-sm-offset-3">
-        <input type="text" name="q" class="form-control input-lg text-center" id="searchbox" placeholder="Search for a restaurant">
+        <input type="text" class="form-control input-lg text-center" name="searchbox" placeholder="Search for a restaurant">
       </div>
     </div>
     <div class="row">
@@ -15,6 +15,11 @@
 
   </form>
 </div>
-
+<div class="results">
+  <% for (var item of businesses) { %>
+    <div><%= item.name %></div>
+    <img src="<%= item.image_url%>">
+  <% }; %>
+</div>
 
 <!-- reference reddit slideshow -->

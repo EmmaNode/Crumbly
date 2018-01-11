@@ -6,51 +6,41 @@ var router = express.Router();
 var request = require("request");
 var db = require('../models');
 var flash = require('connect-flash');
-// emitter.setMaxListeners(20);
-// router.use(bodyParser.urlencoded({extended: false}));
+var yelp = require('yelp-fusion');
+var client = yelp.client(process.env.API_KEY);
 
-router.get('/', function(req, res) {
-    var url = 'GET https://api.yelp.com/v3/businesses/north-india-restaurant-san-francisco';
-    request({
-      method: 'GET',
-      url: url,
-      qs: {
-        // limit: 20,
-        apikey: process.env.API_KEY,
-     },
-     json: true,
-   }, function(error, response, body) {
-      console.log(response);
-     // body above is the object being retruned from the API
-     // res.render('index', {results:dataObj.businesses});
-  // so we are sending that object, and the first object in it called data (named by giphy) to ejs called data
+function yelpSearch(searchTerm, location, callback){
+    client.search({
+      term: searchTerm,
+      location: location
+    }).then(response => {
+      // console.log(response.jsonBody.businesses[0].name);
+      // console.log(response.jsonBody.businesses);
+      response.jsonBody.businesses.forEach(function(item){
+        // console.log(item.name);
+      });
+      callback(response.jsonBody.businesses);
+    }).catch(e => {
+      console.log(e);
+    });
+}
 
-  });
+
+router.get('/', function(req, res){
+  console.log('api data page route reached');
+  res.send('api page');
 });
-
-
-
-  // console.log('api data will go here');
-  // res.send('pages');
-  // var qs = {
-  //   	// s: "indian",
-  //   	apikey: process.env.API_KEY
-  //   }
-
-//     request({
-//       request('http://www.google.com', function (error, response, body) {
-//   if (!error && response.statusCode == 200) {
-//     console.log(body) // Show the HTML for the Google homepage.
-//   }
-// });
-
-
-
-// });
 
 router.get('/findRestaurants', function(req, res){
   console.log('find rest route reached');
-  res.render('pages/findRestaurants');
+  res.render('pages/findRestaurants', { businesses: {} });
+});
+
+router.post('/searchresults', function(req, res){
+  // console.log(req.body);
+  yelpSearch(req.body.searchbox, 'San Fran', function(businesses) {
+    res.render('pages/findRestaurants', {businesses : businesses} );
+  });
 });
 
 router.get('/favorites', function(req, res){
