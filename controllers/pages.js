@@ -49,10 +49,27 @@ router.get('/favorites', isLoggedIn, function(req, res){
   res.render('pages/favorites');
 });
 
+//This grabs the input information from client when they click a button, it finds a duplicate or creates a new one and attaches the user ID | spread is a promise because it takes a long time.
 router.post('/favorites', function(req, res){
-  console.log('post to favs reached');
-  // res.send('pages/favorites');
-  res.render('pages/favorites');
+  // console.log('post to favs reached');
+  //  res.send('pages/favorites');
+  // res.render('pages/favorites');
+  db.content.findOrCreate({
+    where: {
+      restaurantname: req.body.name
+    },
+    defaults: {
+      userId: req.user.id
+    }
+  }).spread(function(restaurant, wasCreated) {
+    if (wasCreated) {
+      res.redirect('/pages/favorites')
+    }  else {
+      res.redirect('/pages/favorites')
+    }
+  }).catch(function(err){
+    console.log('my error is ', err);
+  });
 });
 
 //NEXT GET POST
