@@ -23,6 +23,9 @@
   <% for (var item of businesses) { %>
     <div><%= item.name %></div>
     <img src="<%= item.image_url%>">
+    <div> <%= item.rating %> </div>
+    <div> <%= item.price %> </div>
+    <div> <%= item.display_phone %> </div>
   <% }; %>
   <% } %>
 </div>

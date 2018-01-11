@@ -6,6 +6,7 @@ var router = express.Router();
 var request = require("request");
 var db = require('../models');
 var flash = require('connect-flash');
+// var isLoggedIn = require('./middleware/isLoggedIn');
 var yelp = require('yelp-fusion');
 var client = yelp.client(process.env.API_KEY);
 
@@ -38,7 +39,7 @@ router.get('/findRestaurants', function(req, res){
 
 router.post('/searchresults', function(req, res){
   // console.log(req.body);
-  yelpSearch(req.body.searchbox, 'San Fran', function(businesses) {
+  yelpSearch(req.body.searchbox, req.body.location, function(businesses) {
     res.render('pages/findRestaurants', {businesses : businesses} );
   });
 });
