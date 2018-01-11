@@ -9,6 +9,7 @@ var ejsLayouts = require('express-ejs-layouts');
 var flash = require('connect-flash');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var passport = require('./config/passportConfig');
+var request = require('request');
 var session = require('express-session');
 var app = express();
 
@@ -39,14 +40,14 @@ app.get('/profile', isLoggedIn, function(req, res){
 });
 
 
-app.get('/findRestaurants', function(req, res) {
+// app.get('/findRestaurants', function(req, res) {
     // var yelpUrl = 'https://api.yelp.com/v3/businesses/search';
     //
     // request(yelpUrl, function(error, response, body) {
     //         var restaurant = JSON.parse(body).results;
     //         // console.log(pokemon);
-            res.send('findRestaurants');
-        });
+        //     res.send('findRestaurants');
+        // });
     // });
 
     //app.get restaurants info api and append to individual restaurants
@@ -56,9 +57,11 @@ app.get('/findRestaurants', function(req, res) {
 
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/pages', require('./controllers/pages'));
 //localhost300/favorites
-app.use('/favorites', require('./controllers/favorites'));
-app.use('/next', require('./controllers/next'));
+// app.use('/favorites', require('./controllers/pages'));
+// app.use('/next', require('./controllers/pages'));
+// app.use('/neverAgain', require('./controllers/pages'));
 
 app.listen(process.env.PORT || 3000);
 

@@ -70,8 +70,8 @@ router.get('/logout', function(req, res){
 });
 
 //creates a route that grabs the info api for each restaurant url
-router.get('/findRestaurants', function(req, res){
-  res.render('auth/findRestaurants');
-});
+// router.get('/findRestaurants', function(req, res){
+//   res.render('auth/findRestaurants');
+// });
 
 module.exports = router;
