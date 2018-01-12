@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     restaurantId: DataTypes.STRING,
     restaurantimage: DataTypes.TEXT,
     status: DataTypes.STRING,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    entry: DataTypes.TEXT
   });
       content.associate = function(models) {
         // associations can be defined here

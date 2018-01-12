@@ -4,28 +4,24 @@
 	<div class="homebanner">
 	  <h1 class="text-center">here is a list of favortes</h1>
 	  	<p class="text-center"></P>
-	   <!-- <a href="/">Return to all pokemon</a> -->
 	</div>
     <div class="all-favorites">
     	<div class="favebg">
         <% user.contents.forEach(function(restaurant){ %>
           <h2><%= restaurant.restaurantname %></a></h2>
-					<img src="<%=restaurant.restaurantimage%>" alt="farge">
+					<img src="<%=restaurant.restaurantimage%>" alt="This restaurant has no image">
 						<div class="container-fluid">
 					    <hr>
-					    	<a href="#" class="btn btn-primary btn-lg" onclick="event.preventDefault()" data-target="#<%= restaurant.id %>" data-toggle="collapse">Toggle Me Button</a>
+					    	<a href="#" class="btn btn-primary btn-lg" onclick="event.preventDefault()" data-target="#<%= restaurant.id %>" data-toggle="collapse">View Comments</a>
 					    <hr>
 								<div class="collapse" id="<%= restaurant.id %>">
-									<form action="/pages/favorites" method="POST">
-						  			<div class="form-group">
-							    		<label>Entry Title:</label>
-							    		<input type="text" name="firstname" class="form-control" placeholder="Entry Title">
-										</div>
+									<form action="/pages/entry" method="POST">
 										<div class="form-group">
+											<input hidden type="text" name="restaurantId" value="<%= restaurant.id %>">
 							 				<label>Comments:</label>
-							 				<textarea class="form-control"></textarea>
+							 				<textarea name="commentText" class="form-control"><%=restaurant.entry%></textarea>
 										</div>
-											<button class="bt btn-success" type="submit">Enter</button>
+											<button class="bt btn-success" type="submit">Save</button>
 									</form>
 								</div>
         		</div>

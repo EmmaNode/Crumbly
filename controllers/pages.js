@@ -8,6 +8,8 @@ var request = require("request");
 var db = require('../models');
 var yelp = require('yelp-fusion');
 var client = yelp.client(process.env.API_KEY);
+var content = require('../models/content');
+
 
 function yelpSearch(searchTerm, location, callback){
     client.search({
@@ -86,7 +88,42 @@ router.post('/favorites', isLoggedIn, function(req, res){
     console.log('my error is ', err);
   });
 });
+
+
 //update where restaurant id = req.body.id updat entry column
+// JOURNAL ENTRY GET AND POST
+router.get('/entry', isLoggedIn, function(req, res){
+  console.log('entry get route reached');
+  res.send('pages/entry');
+});
+
+router.post('/entry', isLoggedIn, function(req, res){
+  console.log('post route', req.body);
+  db.content.findOne({
+    where: {
+      id: req.body.restaurantId
+    }
+  }).then(function(restaurant){
+    console.log('then promise', restaurant);
+    restaurant.entry = req.body.commentText;
+    restaurant.save().then(function(updatedRestaurant){
+      res.redirect('/pages/favorites');
+    }).catch(function(err){
+      console.log('error - catch 1', err);
+      res.send('ERROR');
+    });
+  }).catch(function(err){
+    console.log('error - catch 2', err);
+    res.send('ERROR');
+  });
+});
+  // console.log('entry reached');
+  // res.send('pages/enty');
+  // res.render('pages/next');
+
+
+
+
 //NEXT GET POST
 router.get('/next', isLoggedIn, function(req, res){
   console.log('next rest routes reached');
@@ -110,6 +147,32 @@ router.post('/neverAgain', isLoggedIn, function(req, res){
   // res.send('pages/neverAgain');
   res.render('pages/neverAgain');
 });
+
+// Display book update form on GET.
+// exports.entry_update_get = function(req, res, next) {
+//
+//     // Get entry of restaurant for form.
+//     async.parallel({
+//         restaurant: function(callback) {
+//             content.findById(req.params.id).populate('entry').exec(callback);
+//         },
+//         entry: function(callback) {
+//             entry.find(callback);
+//           },
+//         }, function(err, results) {
+//             if (err) { return next(err); }
+//             if (results.restaurant==null) { // No results.
+//                 var err = new Error('restaurant not found');
+//                 err.status = 404;
+//                 return next(err);
+//             }
+//             // Success
+//                 }
+//             }
+//             res.render('restaurantname', { entry:results.entry });
+//         });
+// };
+
 
 
 
