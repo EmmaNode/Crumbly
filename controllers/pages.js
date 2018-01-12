@@ -86,7 +86,7 @@ router.post('/favorites', isLoggedIn, function(req, res){
     console.log('my error is ', err);
   });
 });
-
+//update where restaurant id = req.body.id updat entry column
 //NEXT GET POST
 router.get('/next', isLoggedIn, function(req, res){
   console.log('next rest routes reached');

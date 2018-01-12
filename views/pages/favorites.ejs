@@ -1,27 +1,41 @@
+
+
 <div class="container">
 	<div class="homebanner">
-  <h1 class="text-center">here is a list of favortes</h1>
-  <p class="text-center">
-   <!-- <a href="/">Return to all pokemon</a> -->
-  </p>
-
-</div>
+	  <h1 class="text-center">here is a list of favortes</h1>
+	  	<p class="text-center"></P>
+	   <!-- <a href="/">Return to all pokemon</a> -->
+	</div>
     <div class="all-favorites">
     	<div class="favebg">
         <% user.contents.forEach(function(restaurant){ %>
-      <div class="list">
-        <div class="items">
           <h2><%= restaurant.restaurantname %></a></h2>
 					<img src="<%=restaurant.restaurantimage%>" alt="farge">
-		</form>
-        </div>
+						<div class="container-fluid">
+					    <hr>
+					    	<a href="#" class="btn btn-primary btn-lg" onclick="event.preventDefault()" data-target="#<%= restaurant.id %>" data-toggle="collapse">Toggle Me Button</a>
+					    <hr>
+								<div class="collapse" id="<%= restaurant.id %>">
+									<form action="/pages/favorites" method="POST">
+						  			<div class="form-group">
+							    		<label>Entry Title:</label>
+							    		<input type="text" name="firstname" class="form-control" placeholder="Entry Title">
+					  				</div>
+										<div class="form-group">
+							 				<label>Comments:</label>
+							 				<textarea class="form-control"></textarea>
+										</div>
+						<!-- <input type="submit" class="bt btn-success" value="enter"> -->
+									</form>
+								</div>
+        		</div>
       </div>
-      <% }); %>
-      </div>
-    </div>
+      	<% }); %>
+		</div>
 
 
-</div>
 
 
 //user.contents.forEach reference in visual pages
+//form for entry
+//submit button to call update function
