@@ -28,17 +28,29 @@
       <input hidden type="text" name="name" value="<%= item.name %>">
       <input hidden type="text" name="id" value="<%= item.id %>">
       <input hidden type="text" name="image_url" value="<%= item.image_url %>">
+      <input hidden type="text" name="status" value="love">
 
       <button class="btn btn-primary" type="submit">Add to Favorites</button>
     </form>
 
 
     <form method="POST" action="/pages/next">
+      <input hidden type="text" name="userId" value="<%= currentUser.id %>">
       <input hidden type="text" name="name" value="<%= item.name %>">
+      <input hidden type="text" name="id" value="<%= item.id %>">
+      <input hidden type="text" name="image_url" value="<%= item.image_url %>">
+      <input hidden type="text" name="status" value="next">
+
       <button class="btn btn-success" type="submit">Up Next</button>
     </form>
+
+
     <form method="POST" action="/pages/neverAgain">
       <input hidden type="text" name="name" value="<%= item.name %>">
+      <input hidden type="text" name="userId" value="<%= currentUser.id %>">
+      <input hidden type="text" name="id" value="<%= item.id %>">
+      <input hidden type="text" name="image_url" value="<%= item.image_url %>">
+      <input hidden type="text" name="status" value="dislike">
       <button class="btn btn-danger" type="submit">Dislike</button>
     </form>
 

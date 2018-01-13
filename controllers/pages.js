@@ -73,7 +73,8 @@ router.post('/favorites', isLoggedIn, function(req, res){
     where: {
       restaurantname: req.body.name,
       restaurantId: req.body.id,
-      restaurantimage: req.body.image_url
+      restaurantimage: req.body.image_url,
+      status: req.body.status
     },
     defaults: {
       userId: req.user.id
@@ -126,54 +127,106 @@ router.post('/entry', isLoggedIn, function(req, res){
 
 //NEXT GET POST
 router.get('/next', isLoggedIn, function(req, res){
-  console.log('next rest routes reached');
-  res.render('pages/next');
+  db.user.findOne({
+    where: { id: req.user.id,
+      // status: === "next"
+     },
+    include: [db.content]
+  })
+  .then(function(user) {
+    res.render('pages/next', { user: user });
+  })
+  .catch(function(err) {
+    console.log('my error is ' + err);
+  });
 });
 
 router.post('/next', isLoggedIn, function(req, res){
-  console.log('up next reached');
-  // res.send('pages/next');
-  res.render('pages/next');
+  db.content.findOrCreate({
+    where: {
+      restaurantname: req.body.name,
+      restaurantId: req.body.id,
+      restaurantimage: req.body.image_url,
+      status: req.body.status
+    },
+    defaults: {
+      userId: req.user.id
+    }
+  }).spread(function(restaurant, wasCreated) {
+    if (wasCreated) {
+      res.redirect('/pages/next')
+    }  else {
+      res.redirect('/pages/next')
+    }
+  }).catch(function(err){
+    console.log('my error is ', err);
+  });
 });
 
 //NEVERAGAIN GET POST
 router.get('/neverAgain', isLoggedIn, function(req, res){
-  console.log('neverAgain route reached');
-  res.render('pages/neverAgain');
+  db.user.findOne({
+    where: { id: req.user.id },
+    include: [db.content]
+  })
+  .then(function(user) {
+    res.render('pages/neverAgain', { user: user });
+  })
+  .catch(function(err) {
+    console.log('my error is ' + err);
+  });
 });
 
 router.post('/neverAgain', isLoggedIn, function(req, res){
-  console.log('neverAgain reached');
-  // res.send('pages/neverAgain');
-  res.render('pages/neverAgain');
+  db.content.findOrCreate({
+    where: {
+      restaurantname: req.body.name,
+      restaurantId: req.body.id,
+      restaurantimage: req.body.image_url,
+      status: req.body.status
+    },
+    defaults: {
+      userId: req.user.id
+    }
+  }).spread(function(restaurant, wasCreated) {
+    if (wasCreated) {
+      res.redirect('/pages/neverAgain')
+    }  else {
+      res.redirect('/pages/neverAgain')
+    }
+  }).catch(function(err){
+    console.log('my error is ', err);
+  });
 });
 
-// Display book update form on GET.
-// exports.entry_update_get = function(req, res, next) {
-//
-//     // Get entry of restaurant for form.
-//     async.parallel({
-//         restaurant: function(callback) {
-//             content.findById(req.params.id).populate('entry').exec(callback);
-//         },
-//         entry: function(callback) {
-//             entry.find(callback);
-//           },
-//         }, function(err, results) {
-//             if (err) { return next(err); }
-//             if (results.restaurant==null) { // No results.
-//                 var err = new Error('restaurant not found');
-//                 err.status = 404;
-//                 return next(err);
-//             }
-//             // Success
-//                 }
-//             }
-//             res.render('restaurantname', { entry:results.entry });
-//         });
-// };
+//UPDATE FUNCTION NECESSARY?
 
 
-
+//DELETE Router
+router.delete('/content/:id', isLoggedIn, function(req,res){
+	db.content.findOne({
+		where: {id: req.params.id}
+	}).then(function(recipe){
+		db.content.destroy({
+			where: {id: req.params.id}
+		}).then(function(deleted){
+			res.send('all good');
+		});
+	}).catch(function(err){
+		res.send('uh oh', err);
+	});
+});
+// router.delete('/content/:id', function(req,res){
+// 	console.log('Delete route. ID= ', req.params.id);
+// 	db.content.destroy({
+// 		where: { id: req.params.id}
+// 	}).then(function(deleted){
+// 		console.log('deleted = ', deleted);
+// 		res.send('success');
+// 	}).catch(function(err){
+// 		console.log('An error happened', err);
+// 		res.send('fail');
+// 	})
+// });
 
 module.exports = router;

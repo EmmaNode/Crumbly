@@ -1,1 +1,31 @@
-<h2>restaurants to visit next</h2>
+<div class="container">
+	<div class="homebanner">
+	  <h1 class="text-center">restaurants to visit next</h1>
+	  	<p class="text-center"></P>
+	</div>
+    <div class="up-next">
+    	<div class="nextbg">
+        <% user.contents.forEach(function(restaurant){  %>
+          <h2><%= restaurant.restaurantname %></a></h2>
+					<img src="<%=restaurant.restaurantimage%>" alt="This restaurant has no image">
+						<div class="container-fluid">
+					    <hr>
+					    	<a href="#" class="btn btn-primary btn-lg" onclick="event.preventDefault()" data-target="#<%= restaurant.id %>" data-toggle="collapse">View Comments</a>
+					    <hr>
+								<div class="collapse" id="<%= restaurant.id %>">
+									<form action="/pages/entry" method="POST">
+										<div class="form-group">
+											<input hidden type="text" name="restaurantId" value="<%= restaurant.id %>">
+							 				<label>Comments:</label>
+							 				<textarea name="commentText" class="form-control"><%=restaurant.entry%></textarea>
+										</div>
+											<button class="bt btn-success" type="submit">Save</button>
+                      <button class="bt btn-danger" type="submit">Disliked</button>
+                      <button class="bt btn-primary" type="submit">Loved!</button>
+                      <button class="bt btn-primary" type="submit">Trash</button>
+									</form>
+								</div>
+        		</div>
+      </div>
+      	<% }); %>
+		</div>
