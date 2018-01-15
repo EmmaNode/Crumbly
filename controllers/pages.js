@@ -74,7 +74,7 @@ router.post('/favorites', isLoggedIn, function(req, res){
       restaurantname: req.body.name,
       restaurantId: req.body.id,
       restaurantimage: req.body.image_url,
-      status: req.body.status
+      opinion: req.body.opinion
     },
     defaults: {
       userId: req.user.id
@@ -129,7 +129,7 @@ router.post('/entry', isLoggedIn, function(req, res){
 router.get('/next', isLoggedIn, function(req, res){
   db.user.findOne({
     where: { id: req.user.id,
-      'status': 'next'
+      'opinion': 'next'
      },
     include: [db.content]
   })
@@ -144,7 +144,7 @@ router.get('/next', isLoggedIn, function(req, res){
 router.post('/next', isLoggedIn, function(req, res){
   db.content.findOrCreate({
     where: {
-      status: req.body.status,
+      opinion: req.body.opinion,
       restaurantname: req.body.name,
       restaurantId: req.body.id,
       restaurantimage: req.body.image_url
@@ -183,7 +183,7 @@ router.post('/neverAgain', isLoggedIn, function(req, res){
       restaurantname: req.body.name,
       restaurantId: req.body.id,
       restaurantimage: req.body.image_url,
-      status: req.body.status
+      opinion: req.body.opinion
     },
     defaults: {
       userId: req.user.id

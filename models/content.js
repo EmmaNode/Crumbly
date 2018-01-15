@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     restaurantname: DataTypes.STRING,
     restaurantId: DataTypes.STRING,
     restaurantimage: DataTypes.TEXT,
-    status: DataTypes.STRING,
+    opinion: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     entry: DataTypes.TEXT
   });

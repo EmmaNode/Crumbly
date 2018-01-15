@@ -13,3 +13,21 @@ p {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
 }
+
+.results {
+  position: relative;
+
+}
+
+.row::before, .row:after {
+  display: table;
+  clear: both;
+}
+/* .content-main {
+  .make-lg-column(8);
+} */
+
+img {
+  max-width: 400px;
+  max-height: 640px;
+}
