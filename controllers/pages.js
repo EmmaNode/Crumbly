@@ -129,7 +129,7 @@ router.post('/entry', isLoggedIn, function(req, res){
 router.get('/next', isLoggedIn, function(req, res){
   db.user.findOne({
     where: { id: req.user.id,
-      // status: === "next"
+      'status': 'next'
      },
     include: [db.content]
   })
@@ -144,10 +144,10 @@ router.get('/next', isLoggedIn, function(req, res){
 router.post('/next', isLoggedIn, function(req, res){
   db.content.findOrCreate({
     where: {
+      status: req.body.status,
       restaurantname: req.body.name,
       restaurantId: req.body.id,
-      restaurantimage: req.body.image_url,
-      status: req.body.status
+      restaurantimage: req.body.image_url
     },
     defaults: {
       userId: req.user.id
@@ -203,7 +203,7 @@ router.post('/neverAgain', isLoggedIn, function(req, res){
 
 
 //DELETE Router
-router.delete('/content/:id', isLoggedIn, function(req,res){
+router.delete('/:id', isLoggedIn, function(req,res){
 	db.content.findOne({
 		where: {id: req.params.id}
 	}).then(function(recipe){
@@ -216,17 +216,6 @@ router.delete('/content/:id', isLoggedIn, function(req,res){
 		res.send('uh oh', err);
 	});
 });
-// router.delete('/content/:id', function(req,res){
-// 	console.log('Delete route. ID= ', req.params.id);
-// 	db.content.destroy({
-// 		where: { id: req.params.id}
-// 	}).then(function(deleted){
-// 		console.log('deleted = ', deleted);
-// 		res.send('success');
-// 	}).catch(function(err){
-// 		console.log('An error happened', err);
-// 		res.send('fail');
-// 	})
-// });
+//
 
 module.exports = router;

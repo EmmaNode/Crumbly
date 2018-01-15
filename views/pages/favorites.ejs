@@ -5,6 +5,7 @@
 	  <h1 class="text-center">here is a list of favortes</h1>
 	  	<p class="text-center"></P>
 	</div>
+	<body>
     <div class="all-favorites">
     	<div class="favebg">
         <% user.contents.forEach(function(restaurant){ %>
@@ -33,3 +34,9 @@
       </div>
       	<% }); %>
 		</div>
+		<script>
+				$( "buttonp" ).click(function() {
+				  $( "restaurantId" ).remove();
+				});
+</script>
+</body>

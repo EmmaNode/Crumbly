@@ -12,6 +12,8 @@ var passport = require('./config/passportConfig');
 var request = require('request');
 var session = require('express-session');
 var app = express();
+app.use(express.static(__dirname + '/views'));
+
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false}))
