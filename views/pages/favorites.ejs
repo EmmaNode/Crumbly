@@ -7,27 +7,29 @@
    <div class="all-favorites">
       <div class="favebg">
          <% user.forEach(function(restaurant){ %>
-         <h2><%= restaurant.restaurantname %></a></h2>
-         <img src="<%=restaurant.restaurantimage%>" alt="This restaurant has no image">
-         <div class="container-fluid">
-            <hr>
-            <a href="#" class="btn btn-outline-dark" onclick="event.preventDefault()" data-target="#<%= restaurant.id %>" data-toggle="collapse">View Comments</a>
-            <hr>
-            <div class="collapse" id="<%= restaurant.id %>">
-               <form action="/pages/entry" method="POST">
-                  <div class="form-group">
-                     <input hidden type="text" name="restaurantId" value="<%= restaurant.id %>">
-                     <label>Comments:</label>
-                     <textarea name="commentText" class="form-control"><%=restaurant.entry%></textarea>
-                  </div>
-                  <button class="btn btn-outline-light" type="submit">Save</button>
-               </form>
-            </div>
-            <form class="rmv-favorite" action="/content/:id">
-               <button class="btn btn-outline-light my-btn rest-delete-btn" type="delete">
-                  Remove From Favorites
-               </button>
-            </form>
+           <div class="col-6 col-md-4">
+             <h2><%= restaurant.restaurantname %></a></h2>
+             <img src="<%=restaurant.restaurantimage%>" class="rest-image-result" alt="This restaurant has no image">
+             <div class="container-fluid">
+                <hr>
+                <a href="#" class="btn btn-outline-dark" onclick="event.preventDefault()" data-target="#<%= restaurant.id %>" data-toggle="collapse">View Comments</a>
+                <hr>
+                <div class="collapse" id="<%= restaurant.id %>">
+                   <form action="/pages/entry" method="POST">
+                      <div class="form-group">
+                         <input hidden type="text" name="restaurantId" value="<%= restaurant.id %>">
+                         <label>Comments:</label>
+                         <textarea name="commentText" class="form-control"><%=restaurant.entry%></textarea>
+                      </div>
+                      <button class="btn btn-outline-light" type="submit">Save</button>
+                   </form>
+                </div>
+                <form class="rmv-favorite" action="/content/:id">
+                   <button class="btn btn-outline-light my-btn rest-delete-btn" type="delete">
+                      Remove From Favorites
+                   </button>
+                 </form>
+               </div>
          </div>
       </div>
       <% }); %>

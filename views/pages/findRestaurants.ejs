@@ -20,59 +20,58 @@
 </div>
 <div class="row">
   <div class="content-main">
-    <span>
       <div class="row">
         <div id="grid-system">
           <div class="item-a"></div>
             <% if (businesses) { %>
             <% for (var item of businesses) { %>
-            <h2 class="business-name"><%= item.name %></h2>
-          </div>
-          <div class="item-b">
-              <img class="rest-image-result" src="<%= item.image_url%>">
-          </div>
-            <br>
+              <div class="col-6 col-md-4">
+                <h2 class="business-name"><%= item.name %></h2>
+              <div class="item-b">
+                  <img src="<%= item.image_url%>" class="rest-image-result">
+              </div>
+                <br>
               <div class="restaurant-content-result item-b">
                 <%= item.location.address1 %> <br>
                 <%= item.rating %> Stars
                 <%= item.price %> Price <br>
                 <%= item.display_phone %>
               </div>
-          <div class="item-d">
-              <form method="POST" action="/pages/favorites">
-                <input hidden type="text" name="userId" value="<%= currentUser.id %>">
-                <input hidden type="text" name="name" value="<%= item.name %>">
-                <input hidden type="text" name="id" value="<%= item.id %>">
-                <input hidden type="text" name="image_url" value="<%= item.image_url %>">
-                <input hidden type="text" name="opinion" value="love">
+                <div class="item-d">
+                    <form method="POST" action="/pages/favorites">
+                      <input hidden type="text" name="userId" value="<%= currentUser.id %>">
+                      <input hidden type="text" name="name" value="<%= item.name %>">
+                      <input hidden type="text" name="id" value="<%= item.id %>">
+                      <input hidden type="text" name="image_url" value="<%= item.image_url %>">
+                      <input hidden type="text" name="opinion" value="love">
 
-                <button class="btn btn-outline-light" type="submit">Add to Favorites</button>
-              </form>
-
-
-              <form method="POST" action="/pages/next">
-                <input hidden type="text" name="userId" value="<%= currentUser.id %>">
-                <input hidden type="text" name="name" value="<%= item.name %>">
-                <input hidden type="text" name="id" value="<%= item.id %>">
-                <input hidden type="text" name="image_url" value="<%= item.image_url %>">
-                <input hidden type="text" name="opinion" value="next">
-
-                <button class="btn btn-outline-light" type="submit">Up Next</button>
-              </form>
+                      <button class="btn btn-outline-light" id="results-button1" type="submit">Add to Favorites</button>
+                    </form>
 
 
-              <form method="POST" action="/pages/dislike">
-                <input hidden type="text" name="name" value="<%= item.name %>">
-                <input hidden type="text" name="userId" value="<%= currentUser.id %>">
-                <input hidden type="text" name="id" value="<%= item.id %>">
-                <input hidden type="text" name="image_url" value="<%= item.image_url %>">
-                <input hidden type="text" name="opinion" value="dislike">
-                <button class="btn btn-outline-light" type="submit">Dislike</button>
-              </form>
-        </div>
+                    <form method="POST" action="/pages/next">
+                      <input hidden type="text" name="userId" value="<%= currentUser.id %>">
+                      <input hidden type="text" name="name" value="<%= item.name %>">
+                      <input hidden type="text" name="id" value="<%= item.id %>">
+                      <input hidden type="text" name="image_url" value="<%= item.image_url %>">
+                      <input hidden type="text" name="opinion" value="next">
+
+                      <button class="btn btn-outline-light" id="results-button2" type="submit">Visit Next</button>
+                    </form>
+
+
+                    <form method="POST" action="/pages/dislike">
+                      <input hidden type="text" name="name" value="<%= item.name %>">
+                      <input hidden type="text" name="userId" value="<%= currentUser.id %>">
+                      <input hidden type="text" name="id" value="<%= item.id %>">
+                      <input hidden type="text" name="image_url" value="<%= item.image_url %>">
+                      <input hidden type="text" name="opinion" value="dislike">
+                      <button class="btn btn-outline-light" id="results-button3" type="submit">Dislike</button>
+                    </form>
+              </div>
+            </div>
             <% }; %>
             <% } %>
-        </span>
       </div>
     </div>
   </div>
