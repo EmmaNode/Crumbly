@@ -1,5 +1,3 @@
-//middleware to detect if you are logged in or not
-
 //defining exports and exporting the function
 module.exports = function(req, res, next){
   if(!req.user){ //if there is no username logged in
@@ -7,6 +5,6 @@ module.exports = function(req, res, next){
     res.redirect('/auth/login');
   }
   else {
-    next(); //procede to the next middleware
+    next();
   }
 }

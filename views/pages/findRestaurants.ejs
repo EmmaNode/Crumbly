@@ -1,4 +1,5 @@
-<div class="bubble text-center">Search Yelp for restaurants! Then add it to our database, and save it to your favorites!</div>
+<div class="bubble text-center">Search Yelp for restaurants!
+  <br> Then add it to your journal, and save it to your one of your pages!</div>
 <div class="yelpsearchdiv">
   <form class="form" action="/pages/searchresults" method="post">
     <div class="row">
@@ -11,7 +12,7 @@
     </div>
     <div class="row">
       <div class="form-group col-md-6 col-sm-offset-3">
-        <input type="submit" value="Search Yelp" class="btn btn-primary btn-lg btn-block">
+        <input type="submit" value="Search" class="yelp-button">
       </div>
     </div>
 
@@ -55,7 +56,7 @@
               </form>
 
 
-              <form method="POST" action="/pages/neverAgain">
+              <form method="POST" action="/pages/dislike">
                 <input hidden type="text" name="name" value="<%= item.name %>">
                 <input hidden type="text" name="userId" value="<%= currentUser.id %>">
                 <input hidden type="text" name="id" value="<%= item.id %>">

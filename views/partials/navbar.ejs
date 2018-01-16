@@ -1,8 +1,8 @@
-<nav class="navbar navbar-default">
-  <div class="container"> -->
-    <!-- Mobile stuff -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse">
+<!-- Navigation bar -->
+  <div class="navbar navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -10,34 +10,26 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">Journal</a>
-    </div> -->
+    </div>
     <!-- Define the links -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav navbar-left">
-        <li>
-          <a href="/pages/favorites">Favorites</a>
-        </li>
-        <li>
-          <a href="/pages/next">Next</a>
-        </li>
-        <li>
-          <a href="/pages/neverAgain">Never Again</a>
-        </li>
-        <li>
-          <a href="/pages/findRestaurants">Find Restaurants</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="/auth/login">Login</a>
-        </li>
-        <li>
-          <a href="/auth/signup">Sign Up</a>
-        </li>
-        <li>
-          <a href="/auth/logout">Log Out</a>
-        </li>
-      </ul>
+      <nav role="navigation" class="collapse navbar-collapse navbar-right">
+        <ul class="navbar-nav nav">
+          <li class="active"><a href="/pages/findRestaurants">Find Restaurants</a></li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" href="#" class="dropdown-toggle">Pages<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/pages/favorites">Favorites</a></li>
+              <li><a href="/pages/next">Next</a></li>
+              <li><a href="/pages/dislike">Disliked</a></li>
+              <li class="divider"></li>
+              <li><a href="#">All Items</a></li>
+            </ul>
+          </li>
+            <li><a href="/auth/login">Login</a></li>
+            <li><a href="/auth/signup">Sign Up</a></li>
+            <li><a href="/auth/logout">Log Out</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
-</nav>
+<!-- End Navigation bar -->

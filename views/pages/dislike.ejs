@@ -1,11 +1,11 @@
 <div class="container">
 <div class="homebanner">
-   <h1 class="text-center">restaurants to visit next</h1>
+   <h1 class="text-center">avoid these places</h1>
    <p class="text-center"></P>
 </div>
-<div class="up-next">
-   <div class="nextbg">
-      <% user.forEach(function(restaurant){  %>
+<div class="all-favorites">
+   <div class="favebg">
+      <% user.forEach(function(restaurant){ %>
       <h2><%= restaurant.restaurantname %></a></h2>
       <img src="<%=restaurant.restaurantimage%>" alt="This restaurant has no image">
       <div class="container-fluid">
@@ -15,20 +15,16 @@
          <div class="collapse" id="<%= restaurant.id %>">
             <form action="/pages/entry" method="POST">
                <div class="form-group">
-                  <input hidden type="text" name="restaurantId" value="<%= restaurant.id %>">
-                  <label>Comments:</label>
+                  <input hidden type="text" name="restaurantId" id="rest-id" value="<%= restaurant.id %>">
+                  <label>Reasons to avoid:</label>
                   <textarea name="commentText" class="form-control"><%=restaurant.entry%></textarea>
                </div>
                <button class="btn btn-outline-light" type="submit">Save</button>
-             </form>
-             <div class="groupbtn">
-               <button class="btn btn-outline-light" type="submit">Loved</button>
-               <button class="btn btn-outline-light" type="submit">Disliked</button>
-               <form class="rmv-favorite" action="/content/:id">
-                 <button class="btn btn-outline-light my-btn rest-delete-btn" type="delete">Delete</button>
-              </form>
-            </div>
+            </form>
          </div>
+         <form class="rmv-favorite" action="/content/:id">
+           <button class="btn btn-outline-light my-btn rest-delete-btn" type="delete">Remove from list</button>
+         </form>
       </div>
    </div>
    <% }); %>
