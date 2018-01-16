@@ -46,11 +46,20 @@ img {
   color: #d1c979;
 }
 
-a, p, textarea {
+a, p, textarea, .restaurant-content-result {
     background: transparent;
     text-decoration: none;
     font-family: 'Lato', sans-serif;
     color: #808080;
+}
+
+.restaurant-content-result {
+    background: transparent;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    color: #808080;
+    font-size: initial;
+    padding: 6px;
 }
 
 body {
@@ -64,6 +73,26 @@ body {
 
 h1, h2, h3 {
   font-family: 'Oswald', sans-serif;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+#grid-system {
+  display: run-in;
+  /* grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 300px 300px 300px;
+  grid-template-areas:
+    "header header header"
+    "main main"
+    "footer"; */
+}
+
+
+.item-d {
+  display: inline-flex;
 }
 
 .bubble {
@@ -125,6 +154,26 @@ h1, h2, h3 {
 padding-top: 31.25px;
 }
 
+.alert {
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 0;
+    font-size: 10px;
+    height: 35px;
+    width: 50%;
+}
+
+.alert-success {
+    color: #ddd8a1;
+    display: unset;
+    background-color: transparent;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: transparent;
+    display: unset;
+}
+
 #login-field {
     display: inline;
     width:42%;
@@ -159,10 +208,14 @@ padding-top: 31.25px;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
+/* .input-lg:focus {
+    outline: none;
+} */
 
 textarea.form-control {
     height: auto;
     width: auto;
+    display: unset;
 }
 
 textarea {
@@ -219,7 +272,7 @@ btn-outline-light {
   color: darkkhaki;
 }
 
-input[type=text]  {
+.golden, input[type=password]  {
     display: initial;
     outline: none;
     width: 55%;
@@ -240,7 +293,7 @@ input[type=text]  {
     transition: width 0.4s ease-out;
 }
 
-input[type=text]:focus {
+.golden:focus, input[type=password]:focus {
     width: 80%;
     outline: none;
 }
