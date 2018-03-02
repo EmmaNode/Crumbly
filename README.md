@@ -1,2 +1,2 @@
-# Rest_Journal
-Project 2 - Restaurant Journal
+# Crumbly
+Project 2 - Crunbly
